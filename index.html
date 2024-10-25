@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="style.css" rel="stylesheet">
+    <title>9 Coding Badges From Codingal - Tanmay Singh</title>
+</head>
+<body>
+    <center>
+        <!-- Badge Containers -->
+        <div class="box" onclick="badgeClicked(1)">
+            <h1>Brilliant Builder</h1>
+            <img id="badge1" src="https://codingal.s3.ap-south-1.amazonaws.com/web/images/gamification/badges/brilliant-builder.png" alt="Brilliant Builder Badge">
+        </div>
+        <div class="box" onclick="badgeClicked(2)">
+            <h1>Code Commander</h1>
+            <img id="badge2" src="https://codingal.s3.ap-south-1.amazonaws.com/web/images/gamification/badges/code-commander.png" alt="Code Commander Badge">
+        </div>
+        <div class="box" onclick="badgeClicked(3)">
+            <h1>Code Conqueror</h1>
+            <img id="badge3" src="https://codingal.s3.ap-south-1.amazonaws.com/web/images/gamification/badges/code-conqueror.png" alt="Code Conqueror Badge">
+        </div>
+        <div class="box" onclick="badgeClicked(4)">
+            <h1>Code Craftsman</h1>
+            <img id="badge4" src="https://codingal.s3.ap-south-1.amazonaws.com/web/images/gamification/badges/code-craftsman.png" alt="Code Craftsman Badge">
+        </div>
+        <div class="box" onclick="badgeClicked(5)">
+            <h1>Coding Ninja</h1>
+            <img id="badge5" src="https://codingal.s3.ap-south-1.amazonaws.com/web/images/gamification/badges/coding-ninja.png" alt="Coding Ninja Badge">
+        </div>
+        <div class="box" onclick="badgeClicked(6)">
+            <h1>Coding Wizard</h1>
+            <img id="badge6" src="https://codingal.s3.ap-south-1.amazonaws.com/web/images/gamification/badges/coding-wizard.png" alt="Coding Wizard Badge">
+        </div>
+        <div class="box" onclick="badgeClicked(7)">
+            <h1>Creative Coder</h1>
+            <img id="badge7" src="https://codingal.s3.ap-south-1.amazonaws.com/web/images/gamification/badges/creative-coder-1.png" alt="Creative Coder Badge">
+        </div>
+        <div class="box" onclick="badgeClicked(8)">
+            <h1>Creator Pro</h1>
+            <img id="badge8" src="https://codingal.s3.ap-south-1.amazonaws.com/web/images/gamification/badges/creator-pro.png" alt="Creator Pro Badge">
+        </div>
+        <div class="box" onclick="badgeClicked(9)">
+            <h1>Debugging Detective</h1>
+            <img id="badge9" src="https://codingal.s3.ap-south-1.amazonaws.com/web/images/gamification/badges/debugging-detective.png" alt="Debugging Detective Badge">
+        </div>
+    </center>
+
+    <!-- Audio Element -->
+    <audio id="badge-sound" src="sound.mp3"></audio>
+
+    <script>
+        // URLs for each badge's static and animated GIF images
+        const badgeStaticImages = [
+            "https://codingal.s3.ap-south-1.amazonaws.com/web/images/gamification/badges/brilliant-builder.png",
+            "https://codingal.s3.ap-south-1.amazonaws.com/web/images/gamification/badges/code-commander.png",
+            "https://codingal.s3.ap-south-1.amazonaws.com/web/images/gamification/badges/code-conqueror.png",
+            "https://codingal.s3.ap-south-1.amazonaws.com/web/images/gamification/badges/code-craftsman.png",
+            "https://codingal.s3.ap-south-1.amazonaws.com/web/images/gamification/badges/coding-ninja.png",
+            "https://codingal.s3.ap-south-1.amazonaws.com/web/images/gamification/badges/coding-wizard.png",
+            "https://codingal.s3.ap-south-1.amazonaws.com/web/images/gamification/badges/creative-coder-1.png",
+            "https://codingal.s3.ap-south-1.amazonaws.com/web/images/gamification/badges/creator-pro.png",
+            "https://codingal.s3.ap-south-1.amazonaws.com/web/images/gamification/badges/debugging-detective.png"
+        ];
+
+        const badgeGifs = [
+            "https://codingal.s3.ap-south-1.amazonaws.com/web/images/gamification/badges/brilliant-builder.gif",
+            "https://codingal.s3.ap-south-1.amazonaws.com/web/images/gamification/badges/code-commander.gif",
+            "https://codingal.s3.ap-south-1.amazonaws.com/web/images/gamification/badges/code-conqueror.gif",
+            "https://codingal.s3.ap-south-1.amazonaws.com/web/images/gamification/badges/code-craftsman.gif",
+            "https://codingal.s3.ap-south-1.amazonaws.com/web/images/gamification/badges/coding-ninja.gif",
+            "https://codingal.s3.ap-south-1.amazonaws.com/web/images/gamification/badges/coding-wizard.gif",
+            "https://codingal.s3.ap-south-1.amazonaws.com/web/images/gamification/badges/creative-coder-1.gif",
+            "https://codingal.s3.ap-south-1.amazonaws.com/web/images/gamification/badges/creator-pro.gif",
+            "https://codingal.s3.ap-south-1.amazonaws.com/web/images/gamification/badges/debugging-detective.gif"
+        ];
+
+        // Tracks the currently playing badge
+        let currentBadge = null;
+
+        function badgeClicked(badgeNumber) {
+            const soundElement = document.getElementById('badge-sound');
+
+            // Reset previous badge animation and sound
+            if (currentBadge && currentBadge !== badgeNumber) {
+                document.getElementById(`badge${currentBadge}`).src = badgeStaticImages[currentBadge - 1];
+                soundElement.pause();
+                soundElement.currentTime = 0;
+            }
+
+            // Set the clicked badge to play its GIF
+            const selectedBadge = document.getElementById(`badge${badgeNumber}`);
+            selectedBadge.src = badgeGifs[badgeNumber - 1];
+
+            // Play sound if a new badge is clicked
+            if (currentBadge !== badgeNumber) {
+                soundElement.play();
+            }
+
+            // Update current badge tracker
+            currentBadge = badgeNumber;
+        }
+    </script>
+</body>
+</html>
